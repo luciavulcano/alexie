@@ -1,0 +1,24 @@
+@import "reset.scss";
+@import "../scss/shared/colors.scss";
+@import "../scss/shared/mixins.scss";
+
+@import "../scss/views/shared/navbar.scss";
+@import "../scss/views/registerEmotions.scss";
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+.ant-menu-title-content,
+.ant-typography {
+  font-family: "Ubuntu", sans-serif;
+}
+
+.ant-layout-content {
+  height: 100vh;
+  padding: 1rem;
+  margin-top: 70px;
+  background-color: $white;
+}
