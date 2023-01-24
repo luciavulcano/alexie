@@ -1,0 +1,17 @@
+.register-emotions {
+  &__user {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__input {
+    flex-direction: column;
+    .ant-input {
+      width: 100%;
+    }
+  }
+  &__checkbox{
+    width: 100%;
+  }
+}
