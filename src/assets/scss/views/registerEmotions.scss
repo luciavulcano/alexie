@@ -3,15 +3,55 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    @media (min-width: 992px) {
+      flex-direction: column;
+    }
+    &__col {
+      display: flex;
+      justify-content: center;
+    }
   }
 
-  &__input {
-    flex-direction: column;
+  &__emotions {
+    .ant-input {
+      width: 100%;
+    }
+    &__checkbox {
+      .ant-col {
+        margin: $margin-checkbox;
+      }
+    }
+  }
+  &__habits {
+    margin-top: $margin-sections;
+    &__checkbox {
+      .ant-col {
+        margin: $margin-checkbox;
+      }
+    }
+  }
+  &__events {
+    margin-top: $margin-sections;
+    &__checkbox {
+      .ant-col {
+        margin: $margin-checkbox;
+      }
+    }
+  }
+
+  &__health {
+    margin-top: $margin-sections;
     .ant-input {
       width: 100%;
     }
   }
-  &__checkbox{
-    width: 100%;
+  &__button {
+    margin-top: $margin-sections;
+    justify-content: end;
+    button {
+      @include button;
+      align-self: flex-end;
+    }
   }
 }

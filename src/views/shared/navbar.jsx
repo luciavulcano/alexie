@@ -3,14 +3,14 @@ import { Menu, Typography } from "antd";
 import { NavLink } from "react-router-dom";
 import Logo from "../../assets/imgs/logo.png";
 
-const Navbar = () => {
-  function getItem(label, key) {
-    return {
-      label,
-      key,
-    };
-  }
+function getItem(label, key) {
+  return {
+    label,
+    key,
+  };
+}
 
+const Navbar = () => {
   const items = [
     {
       label: "my emotions",
@@ -20,13 +20,14 @@ const Navbar = () => {
   ];
   const [current, setCurrent] = useState("emo");
   const { Title } = Typography;
+
   const onClick = (e) => {
     setCurrent(e.key);
   };
   return (
     <nav className="navbar">
       <span>
-        <img src={Logo} alt="" className="navbar__logo" />
+        <img src={Logo} alt="icon of the alexie application" className="navbar__logo" />
         <Title level={2} className="navbar__h2">
           alexie
         </Title>
@@ -38,9 +39,9 @@ const Navbar = () => {
         items={items}
         className="navbar__ul__desktop"
       />
-      <div class="navbar__hamburguer">
-        <input id="navbar__toggle" type="checkbox"/>
-        <label class="navbar__hamburguer__btn" for="menu__toggle">
+      <div className="navbar__hamburguer">
+        <input id="navbar__toggle" type="checkbox" />
+        <label className="navbar__hamburguer__btn" htmlFor="navbar__toggle">
           <span></span>
         </label>
         <Menu
