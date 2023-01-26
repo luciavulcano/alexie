@@ -1,0 +1,31 @@
+.footer {
+  @include menus;
+  flex-direction: column;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  &__logo {
+    @include logo;
+  }
+  &__h2 {
+    margin-bottom: 0 !important;
+  }
+
+  &__box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: $margin-sections;
+    span{
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+    &__link{
+      margin: 10px;
+    }
+  }
+}

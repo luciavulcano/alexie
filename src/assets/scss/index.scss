@@ -1,8 +1,10 @@
 @import "reset.scss";
 @import "../scss/shared/colors.scss";
+@import "../scss/shared/spacing.scss";
 @import "../scss/shared/mixins.scss";
 
 @import "../scss/views/shared/navbar.scss";
+@import "../scss/views/shared/footer.scss";
 @import "../scss/views/registerEmotions.scss";
 
 h1,
@@ -13,12 +15,17 @@ h5,
 p,
 .ant-menu-title-content,
 .ant-typography {
-  font-family: "Ubuntu", sans-serif;
+  font-family: "Ubuntu", sans-serif !important;
 }
 
 .ant-layout-content {
-  height: 100vh;
   padding: 1rem;
   margin-top: 70px;
   background-color: $white;
+}
+
+.ant-form-item-required {
+  &::before {
+    display: none !important;
+  }
 }
