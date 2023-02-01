@@ -19,9 +19,13 @@ p,
 }
 
 .ant-layout-content {
-  padding: 1rem;
+  padding: $padding-mobile;
   margin-top: 70px;
   background-color: $white;
+
+  @media (min-width: 992px){
+    padding: $padding-desktop;
+  }
 }
 
 .ant-form-item-required {
