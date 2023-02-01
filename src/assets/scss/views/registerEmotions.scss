@@ -1,21 +1,44 @@
 .register-emotions {
+  &__desktop {
+    @media (min-width: 992px) {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+
+      &--start {
+        display: flex;
+        align-items: baseline;
+        justify-content: flex-start;
+      }
+    }
+  }
+
   &__user {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: $margin-sections;
 
     @media (min-width: 992px) {
       flex-direction: column;
+      width: 15%;
+      align-items: center;
+      text-align: left;
+
+      margin-bottom: 0;
     }
     &__col {
       display: flex;
       justify-content: center;
     }
+    &__image{
+      margin-bottom: $margin-sections;
+    }
   }
 
   &__emotions {
-    .ant-input {
-      width: 100%;
+    @media (min-width: 992px) {
+      width: 30%;
     }
     &__checkbox {
       .ant-col {
@@ -30,6 +53,9 @@
         margin: $margin-checkbox;
       }
     }
+    @media (min-width: 992px) {
+      width: 30%;
+    }
   }
   &__events {
     margin-top: $margin-sections;
@@ -38,12 +64,22 @@
         margin: $margin-checkbox;
       }
     }
+    @media (min-width: 992px) {
+      width: 27.4%;
+    }
   }
 
   &__health {
     margin-top: $margin-sections;
-    .ant-input {
-      width: 100%;
+    display: flex;
+    flex-direction: column;
+    &__checkbox {
+      .ant-col {
+        margin: $margin-checkbox;
+      }
+    }
+    @media (min-width: 992px) {
+      width: 30%;
     }
   }
   &__button {
