@@ -1,7 +1,8 @@
-import { React } from "react";
+import { React, useCallback, useEffect } from "react";
 import { Col, Row, Input, Typography, Form, Checkbox, Button } from "antd";
 import noUser from "../assets/imgs/user.png";
 import { maxLength, requiredField } from "../services/constants";
+import { sendGet, sendPost, ROUTES } from "../services/backendRoutes";
 
 const RegisterEmotions = () => {
   const { Text, Title } = Typography;
@@ -10,6 +11,21 @@ const RegisterEmotions = () => {
   const sendSave = () => {
     console.log("save");
   };
+
+  //renderiza as informações do backend
+  const renderEmotions = useCallback(async () => {
+    try {
+      const response = await sendGet(`${ROUTES.emotions}`);
+      console.log(response.data)
+    } catch (error) {
+      console.error(error);
+    }
+  });
+
+  useEffect(() => {
+    renderEmotions()
+  }, [])
+  
 
   return (
     <Form

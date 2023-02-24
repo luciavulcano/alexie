@@ -1,6 +1,10 @@
 .footer {
   @include menus;
   flex-direction: column;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+
 
   &__header {
     display: flex;
