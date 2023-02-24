@@ -5,7 +5,9 @@
 
 @import "../scss/views/shared/navbar.scss";
 @import "../scss/views/shared/footer.scss";
+@import "../scss/views/shared/error.scss";
 @import "../scss/views/registerEmotions.scss";
+@import "../scss/views/login.scss";
 
 h1,
 h2,
@@ -17,14 +19,25 @@ p,
 .ant-typography {
   font-family: "Ubuntu", sans-serif !important;
 }
-
+.ant-layout{
+  background-color: $white;
+}
 .ant-layout-content {
   padding: $padding-mobile;
-  margin-top: 70px;
+  margin: 70px 0 230px;
   background-color: $white;
 
+  @media (min-width: 425px){
+    margin: 70px 0 210px;
+  }
+
+  @media (min-width: 768px){
+    margin: 70px 0 190px;
+  }
+  
   @media (min-width: 992px){
     padding: $padding-desktop;
+    height: 75vh;
   }
 }
 

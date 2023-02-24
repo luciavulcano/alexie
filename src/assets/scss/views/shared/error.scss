@@ -1,0 +1,16 @@
+.error{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__image{
+    max-width: 300px;
+  }
+  &__button{
+    margin-top: $margin-sections;
+    button{
+      @include button($width: 200px);
+    }
+  }
+}
