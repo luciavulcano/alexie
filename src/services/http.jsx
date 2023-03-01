@@ -1,8 +1,5 @@
 import axios from 'axios'
-import generateBackendURL from "../services/generateBackendURL";
 
-const http = axios.create({
-  baseURL: generateBackendURL
-})
+const http = axios.create()
 
 export default http
