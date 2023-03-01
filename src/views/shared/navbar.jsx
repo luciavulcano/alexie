@@ -12,10 +12,7 @@ function getItem(label, key) {
 
 const Navbar = () => {
   const items = [
-    {
-      label: "my emotions",
-      key: "emo",
-    },
+    getItem(<NavLink to="/my-emotions">my emotions</NavLink>, "emo"),
     getItem(<NavLink to="/register-emotion">new emotion</NavLink>, "newEmo"),
   ];
   const [current, setCurrent] = useState("emo");

@@ -1,0 +1,42 @@
+.login {
+  &__header {
+    text-align: center;
+    margin-bottom: $margin-sections;
+  }
+  &__box {
+    border-radius: $border-radius;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: $padding-mobile;
+    max-width: 400px;
+    margin: auto;
+    box-shadow: 2px 2px 6px $light-grey;
+
+    &__button {
+      display: flex;
+      justify-content: flex-end;
+      flex-direction: column;
+      width: 100%;
+      margin-bottom: $margin-sections;
+      button {
+        @include button;
+        align-self: flex-end;
+      }
+    }
+
+    &__sign{
+      .ant-col{
+        margin: 10px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        button{
+          @include button;
+          width: 250px;
+        }
+      }
+    }
+  }
+}
