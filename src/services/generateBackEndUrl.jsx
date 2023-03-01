@@ -15,7 +15,7 @@
     serverApiUrl = currentUrl.replace(regexEnvmt, "-backend-$1") + "/";
   } else {
     // Não existe url com "-dsv", "-tst" ou "-hmg"
-    serverApiUrl = currentUrl + ":8080/";
+    serverApiUrl = currentUrl + ":8000/";
   }
 
   return serverApiUrl;

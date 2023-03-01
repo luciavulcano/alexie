@@ -1,11 +1,12 @@
 import generateBackendURL from "./generateBackendURL"
-import http from "./http";
+import apiInterceptor from "./interceptor"
 
 const ADDRESS = generateBackendURL("");
 
 export const ROUTES = {
   version: "api/v1/",
   login: "api/token/",
+  mainEmotion: "api/v1/main/emotions/",
   emotions: "api/v1/general/emotions/",
   emotionsLog: "api/v1/general/emotions/logs/",
   habits: "api/v1/habits/",
@@ -15,7 +16,7 @@ export const ROUTES = {
 
 export async function sendGet(route) {
   try {
-    return await http.get(ADDRESS + route);
+    return await apiInterceptor.get(ADDRESS + route);
   } catch (err) {
     if (!err.response && window.location.pathname !== "/error") {
       window.location.href = "/error";
@@ -26,7 +27,7 @@ export async function sendGet(route) {
 
 export async function sendPost(route, params, header) {
   try {
-    return await http.post(ADDRESS + route, params, header);
+    return await apiInterceptor.post(ADDRESS + route, params, header);
   } catch (err) {
     if (!err.response && window.location.pathname !== "/error") {
       window.location.href = "/error";
@@ -37,7 +38,7 @@ export async function sendPost(route, params, header) {
 
 export async function sendDelete(route) {
   try {
-    return await http.delete(ADDRESS + route);
+    return await apiInterceptor.delete(ADDRESS + route);
   } catch (err) {
     if (!err.response && window.location.pathname !== "/error") {
       window.location.href = "/error";
@@ -48,7 +49,7 @@ export async function sendDelete(route) {
 
 export async function sendPatch(route, params, header) {
   try {
-    return await http.patch(ADDRESS + route, params, header);
+    return await apiInterceptor.patch(ADDRESS + route, params, header);
   } catch (err) {
     if (!err.response && window.location.pathname !== "/error") {
       window.location.href = "/error";
