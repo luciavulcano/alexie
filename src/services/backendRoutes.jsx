@@ -10,8 +10,12 @@ export const ROUTES = {
   emotions: "api/v1/general/emotions/",
   emotionsLog: "api/v1/general/emotions/logs/",
   habits: "api/v1/habits/",
+  habitsLog: "api/v1/habits/logs/",
   events: "api/v1/events/",
-  health: "api/v1/health/"
+  eventsLog: "api/v1/events/logs/",
+  mainHealth: "api/v1/main/health/",
+  health: "api/v1/health/",
+  healthLog: "api/v1/health/logs/",
 };
 
 export async function sendGet(route) {

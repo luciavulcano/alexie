@@ -15,7 +15,7 @@ const Navbar = () => {
     getItem(<NavLink to="/my-emotions">my emotions</NavLink>, "emo"),
     getItem(<NavLink to="/register-emotion">new emotion</NavLink>, "newEmo"),
   ];
-  const [current, setCurrent] = useState("emo");
+  const [current, setCurrent] = useState("newEmo");
   const { Title } = Typography;
 
   const onClick = (e) => {

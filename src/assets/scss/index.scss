@@ -25,20 +25,16 @@ p,
 }
 .ant-layout-content {
   padding: $padding-mobile;
-  margin: 70px 0 230px;
+  margin-top: 70px;
   background-color: $white;
 
   @media (min-width: 425px){
-    margin: 70px 0 210px;
-  }
-
-  @media (min-width: 768px){
-    margin: 70px 0 190px;
+    margin-top: 70px;
   }
   
   @media (min-width: 992px){
     padding: $padding-desktop;
-    height: 75vh;
+    min-height: 75vh!important;
   }
 }
 

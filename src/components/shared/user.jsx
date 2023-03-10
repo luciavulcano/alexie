@@ -8,14 +8,14 @@ const UserInfos = () => {
 
   return (
     <Row className="register-emotions__user">
-      <Col span={24} className="register-emotions__user__col">
+      <Col span={4} className="register-emotions__user__col">
         <img
           src={noUser}
           alt="image of the user"
           className="register-emotions__user__image"
         />
       </Col>
-      <Col span={24}>
+      <Col span={20}>
         <Text>
           Lorem ipsum dolor sit amet consectetur adipisicing elit.
           Asperiores a error facere eveniet earum maxime dolorem totam

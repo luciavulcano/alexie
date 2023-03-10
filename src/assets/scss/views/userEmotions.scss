@@ -1,4 +1,12 @@
 .user-emotions{
   display: flex;
-  justify-content: space-between;
+
+  &__box{
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__span{
+    display: flex;
+  }
 }
