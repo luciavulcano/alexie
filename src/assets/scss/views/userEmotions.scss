@@ -8,5 +8,14 @@
 
   &__span{
     display: flex;
+    justify-content: space-between;
+
+    &:nth-child(2){
+      margin-top: $margin-sections;
+    }
+  }
+  &__col{
+    display: flex;
+    flex-direction: column;
   }
 }
