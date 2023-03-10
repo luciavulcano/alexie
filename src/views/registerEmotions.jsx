@@ -1,62 +1,80 @@
-import { React, useCallback } from "react";
+import { React, useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Col, Row, Input, Typography, Form, Checkbox, Button, message } from "antd";
 import { maxLength, requiredField } from "../services/constants";
-import { sendPost, ROUTES } from "../services/backendRoutes";
+import { sendPost, ROUTES, sendGet } from "../services/backendRoutes";
 import UserInfos from "../components/shared/user";
 
 const RegisterEmotions = () => {
+  const [emotionsCheckbox, setEmotionsCheckbox] = useState([]);
+  const [checkedEmotions, setCheckedEmotions] = useState([]);
+  const [habitsCheckbox, setHabitsCheckbox] = useState([]);
+  const [checkedHabits, setCheckedHabits] = useState([]);
+  const [eventsCheckbox, setEventsCheckbox] = useState([]);
+  const [checkedEvents, setCheckedEvents] = useState([]);
+  const [healthCheckbox, setHealthCheckbox] = useState([]);
+  const [checkedHealth, setCheckedHealth] = useState([]);
   const { Title } = Typography;
   const [form] = Form.useForm();
   const navigate = useNavigate()
 
+  const loopIds = (idArray, route, param) => {
+    return idArray.forEach(id => {
+      sendPost(`${route}`, { [param]: id } )
+    });
+  };
+
+  //saves the user information
   const saveEmotions = useCallback(async (values) => {
     const requestMainEmotion = {
       description: values.mainEmotion
     };
-    const requestEmotions = {
-      description: values.generalEmotion !== undefined ? values.generalEmotion.join(",") : null
+    const requestMainHealth = {
+      description: values.mainHealth
     };
-    const requestHabits = {
-      description: values.habits !== undefined ? values.habits.join(",") : null
-    };
-    const requestEvents = {
-      description: values.events !== undefined ? values.events.join(",") : null
-    };
-    const requestHealth = {
-      description: values.health !== undefined ? values.health.join(",") : null
-    };
-    sendPost(`${ROUTES.mainEmotion}`, requestMainEmotion)
-      .then(() => {
-        sendPost(`${ROUTES.emotions}`, requestEmotions)
-          .then(() => {
-            sendPost(`${ROUTES.habits}`, requestHabits)
-              .then(() => {
-                sendPost(`${ROUTES.events}`, requestEvents)
-                  .then(() => {
-                    sendPost(`${ROUTES.health}`, requestHealth)
-                    navigate('/my-emotions')
-                  })
-                  .catch((error) => {
-                    message.error(`Im sorry, that was an internal issue. We did not save your emotions`);
-                    console.error(error)
-                  })
-              })
-              .catch((error) => {
-                message.error(`Im sorry, that was an internal issue. We did not save your emotions`);
-                console.error(error)
-              })
-          })
-          .catch((error) => {
-            message.error(`Im sorry, that was an internal issue. We did not save your emotions`);
-            console.error(error)
-          })
-      }).catch((error) => {
-        message.error(`Im sorry, that was an internal issue. We did not save your emotions`);
-        console.error(error)
-      });
+    sendPost(`${ROUTES.mainEmotion}`, requestMainEmotion);
+    sendPost(`${ROUTES.mainHealth}`, requestMainHealth);
+    loopIds(checkedEmotions, ROUTES.emotionsLog, "emotion");
+    loopIds(checkedHabits, ROUTES.habitsLog, "habit");
+    loopIds(checkedEvents, ROUTES.eventsLog, "event");
+    loopIds(checkedHealth, ROUTES.healthLog, "health");
+    navigate('/my-emotions');
   });
 
+  //renders the data from db
+  const renderInformation = () => {
+    sendGet(`${ROUTES.emotions}`).then((response) => {
+      setEmotionsCheckbox(response.data)
+    })
+    sendGet(`${ROUTES.habits}`).then((response) => {
+      setHabitsCheckbox(response.data)
+    })
+    sendGet(`${ROUTES.health}`).then((response) => {
+      setHealthCheckbox(response.data)
+    })
+    sendGet(`${ROUTES.events}`).then((response) => {
+      setEventsCheckbox(response.data)
+    })
+  };
+
+  //watches and saves the checked itens on an array
+  const handleCheckedEmotions = (checkedValues) => {
+    setCheckedEmotions(checkedValues)
+  };
+  const handleCheckedHabits = (checkedValues) => {
+    setCheckedHabits(checkedValues)
+  };
+  const handleCheckedEvents = (checkedValues) => {
+    setCheckedEvents(checkedValues)
+  };
+  const handleCheckedHealth = (checkedValues) => {
+    setCheckedHealth(checkedValues)
+  };
+
+
+  useEffect(() => {
+    renderInformation()
+  }, []);
 
   return (
     <Form
@@ -66,7 +84,7 @@ const RegisterEmotions = () => {
       form={form}
     >
       <span className="register-emotions__desktop">
-        <UserInfos/>
+        <UserInfos />
         <Row className="register-emotions__emotions">
           <Col span={24}>
             <Title level={4}>emotions</Title>
@@ -98,32 +116,18 @@ const RegisterEmotions = () => {
             name="generalEmotion"
             shouldUpdate
           >
-            <Checkbox.Group className="register-emotions__emotions__checkbox">
+            <Checkbox.Group
+              className="register-emotions__emotions__checkbox"
+              onChange={handleCheckedEmotions}
+            >
               <Row>
-                <Col span={8}>
-                  <Checkbox value="anger">anger</Checkbox>
-                </Col>
-                <Col span={8}>
-                  <Checkbox value="happiness">happiness</Checkbox>
-                </Col>
-                <Col span={8}>
-                  <Checkbox value="fear">fear</Checkbox>
-                </Col>
-                <Col span={8}>
-                  <Checkbox value="boredom">boredom</Checkbox>
-                </Col>
-                <Col span={8}>
-                  <Checkbox value="confusion">confusion</Checkbox>
-                </Col>
-                <Col span={8}>
-                  <Checkbox value="lonely">lonely</Checkbox>
-                </Col>
-                <Col span={8}>
-                  <Checkbox value="pain">pain</Checkbox>
-                </Col>
-                <Col span={8}>
-                  <Checkbox value="tired">tired</Checkbox>
-                </Col>
+                {emotionsCheckbox.map((emotion, i) => {
+                  return (
+                    <Col span={8} key={i}>
+                      <Checkbox value={emotion.id}>{emotion.description}</Checkbox>
+                    </Col>
+                  )
+                })}
               </Row>
             </Checkbox.Group>
           </Form.Item>
@@ -136,29 +140,18 @@ const RegisterEmotions = () => {
             name="habits"
             shouldUpdate
           >
-            <Checkbox.Group className="register-emotions__habits__checkbox" >
+            <Checkbox.Group
+              className="register-emotions__habits__checkbox"
+              onChange={handleCheckedHabits}
+            >
               <Row>
-                <Col span={8}>
-                  <Checkbox value="exercised">exercised</Checkbox>
-                </Col>
-                <Col span={8}>
-                  <Checkbox value="showered">showered</Checkbox>
-                </Col>
-                <Col span={8}>
-                  <Checkbox value="socialized">socialized</Checkbox>
-                </Col>
-                <Col span={8}>
-                  <Checkbox value="slept">slept</Checkbox>
-                </Col>
-                <Col span={8}>
-                  <Checkbox value="ate healthy">ate healthy</Checkbox>
-                </Col>
-                <Col span={8}>
-                  <Checkbox value="hobbie">hobbie</Checkbox>
-                </Col>
-                <Col span={8}>
-                  <Checkbox value="drank water">drank water</Checkbox>
-                </Col>
+                {habitsCheckbox.map((habit, i) => {
+                  return (
+                    <Col span={8} key={i}>
+                      <Checkbox value={habit.id}>{habit.description}</Checkbox>
+                    </Col>
+                  )
+                })}
               </Row>
             </Checkbox.Group>
           </Form.Item>
@@ -174,16 +167,18 @@ const RegisterEmotions = () => {
             name="events"
             shouldUpdate
           >
-            <Checkbox.Group className="register-emotions__events__checkbox" >
+            <Checkbox.Group
+              className="register-emotions__events__checkbox"
+              onChange={handleCheckedEvents}
+            >
               <Row>
-                <Col span={24}>
-                  <Checkbox value="meltdown">did I had a meltdown?</Checkbox>
-                </Col>
-                <Col span={24}>
-                  <Checkbox value="identified">
-                    was I able to identify something that was bottering me?
-                  </Checkbox>
-                </Col>
+                {eventsCheckbox.map((event, i) => {
+                  return (
+                    <Col span={24} key={i}>
+                      <Checkbox value={event.id}>{event.description}</Checkbox>
+                    </Col>
+                  )
+                })}
               </Row>
             </Checkbox.Group>
           </Form.Item>
@@ -198,6 +193,16 @@ const RegisterEmotions = () => {
                 shouldUpdate
                 name="mainHealth"
                 label="did I had a health issue today?"
+                rules={[
+                  {
+                    required: true,
+                    message: requiredField,
+                  },
+                  {
+                    max: 50,
+                    message: maxLength,
+                  },
+                ]}
               >
                 <Input type="text" placeholder="type something"></Input>
               </Form.Item>
@@ -207,26 +212,18 @@ const RegisterEmotions = () => {
             name="health"
             shouldUpdate
           >
-            <Checkbox.Group className="register-emotions__health__checkbox" name="health">
+            <Checkbox.Group
+              className="register-emotions__health__checkbox"
+              onChange={handleCheckedHealth}
+            >
               <Row>
-                <Col span={8}>
-                  <Checkbox value="headache">headache</Checkbox>
-                </Col>
-                <Col span={8}>
-                  <Checkbox value="burnout">burnout</Checkbox>
-                </Col>
-                <Col span={8}>
-                  <Checkbox value="repetitive thoughts">repetitive thoughts</Checkbox>
-                </Col>
-                <Col span={8}>
-                  <Checkbox value="cramps">cramps</Checkbox>
-                </Col>
-                <Col span={8}>
-                  <Checkbox value="feeling sick">feeling sick</Checkbox>
-                </Col>
-                <Col span={8}>
-                  <Checkbox value="back pain">back pain</Checkbox>
-                </Col>
+                {healthCheckbox.map((health, i) => {
+                  return (
+                    <Col span={8} key={i}>
+                      <Checkbox value={health.id}>{health.description}</Checkbox>
+                    </Col>
+                  )
+                })}
               </Row>
             </Checkbox.Group>
           </Form.Item>
