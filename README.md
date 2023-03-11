@@ -5,7 +5,10 @@ this is the frontend repository for 'alexie', a project of a emotional diary for
 in this project, we use:
 
 | ![React]| [React](https://pt-br.reactjs.org/)        |     |
+
 | ![Zustand]| [Zustand](https://docs.pmnd.rs/zustand/recipes)        |      |
+
 | ![antd]| [antd](https://ant.design/)       |       |
+
 | ![sass]| [antd]()       |       |
 
