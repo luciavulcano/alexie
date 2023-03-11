@@ -7,12 +7,12 @@ const UserInfos = () => {
   const { Text } = Typography;
 
   return (
-    <Row className="register-emotions__user">
-      <Col span={4} className="register-emotions__user__col">
+    <Row className="user">
+      <Col span={4} className="user__col">
         <img
           src={noUser}
           alt="image of the user"
-          className="register-emotions__user__image"
+          className="user__image"
         />
       </Col>
       <Col span={20}>

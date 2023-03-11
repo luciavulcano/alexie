@@ -12,28 +12,6 @@
       }
     }
   }
-
-  &__user {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: $margin-sections;
-
-    @media (min-width: 992px) {
-      width: 15%;
-      text-align: left;
-      margin-bottom: 0;
-    }
-    &__col {
-      display: flex;
-      justify-content: center;
-
-    }
-    &__image{
-      margin-bottom: $margin-sections;
-    }
-  }
-
   &__emotions {
     @media (min-width: 992px) {
       width: 30%;

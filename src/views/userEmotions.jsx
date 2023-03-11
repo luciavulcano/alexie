@@ -1,5 +1,5 @@
 import { React, useEffect, useCallback, useState } from "react";
-import { Progress, Row, Col, Typography } from 'antd';
+import { Progress, Row, Col, Typography, Space } from 'antd';
 import UserInfos from "../components/shared/user";
 import { sendGet, ROUTES } from "../services/backendRoutes";
 
@@ -166,80 +166,92 @@ const UserEmotions = () => {
       <UserInfos />
       <div className="user-emotions__box">
         <span className="user-emotions__span">
-          <div>
+          <div className="user-emotions__span__box">
             <Row>
               <Col span={24}>
                 <Title level={4}>emotions</Title>
               </Col>
             </Row>
-            <Row>
-              <Col span={8} className="user-emotions__col">
-                <Text>anger</Text>
-                <Progress
-                  type="circle"
-                  percent={(anger / Object.keys(emotions).length * 100).toFixed(0)}
-                  format={(percent) => `${percent}%`}
-                />
+            <Row className="user-emotions__span__box__row">
+              <Col span={24} className="user-emotions__col">
+                <div className="user-emotions__col__progress">
+                  <Text>anger</Text>
+                  <Progress
+                    type="circle"
+                    size={5}
+                    percent={(anger / Object.keys(emotions).length * 100).toFixed(0)}
+                    format={(percent) => `${percent}%`}
+                  />
+                </div>
+                <div className="user-emotions__col__progress">
+                  <Text>boredom</Text>
+                  <Progress
+                    type="circle"
+                    size={5}
+                    percent={(boredom / Object.keys(emotions).length * 100).toFixed(0)}
+                    format={(percent) => `${percent}%`}
+                  />
+
+                </div>
+                <div className="user-emotions__col__progress">
+                  <Text>tired</Text>
+                  <Progress
+                    type="circle"
+                    size={5}
+                    percent={(tired / Object.keys(emotions).length * 100).toFixed(0)}
+                    format={(percent) => `${percent}%`}
+                  />
+                </div>
+                <div className="user-emotions__col__progress">
+                  <Text>happiness</Text>
+                  <Progress
+                    type="circle"
+                    size={5}
+                    percent={(happiness / Object.keys(emotions).length * 100).toFixed(0)}
+                    format={(percent) => `${percent}%`}
+                  />
+                </div>
               </Col>
-              <Col span={8} className="user-emotions__col">
-                <Text>boredom</Text>
-                <Progress
-                  type="circle"
-                  percent={(boredom / Object.keys(emotions).length * 100).toFixed(0)}
-                  format={(percent) => `${percent}%`}
-                />
-              </Col>
-              <Col span={8} className="user-emotions__col">
-                <Text>tired</Text>
-                <Progress
-                  type="circle"
-                  percent={(tired / Object.keys(emotions).length * 100).toFixed(0)}
-                  format={(percent) => `${percent}%`}
-                />
-              </Col>
-              <Col span={8} className="user-emotions__col">
-                <Text>happiness</Text>
-                <Progress
-                  type="circle"
-                  percent={(happiness / Object.keys(emotions).length * 100).toFixed(0)}
-                  format={(percent) => `${percent}%`}
-                />
-              </Col>
-              <Col span={8} className="user-emotions__col">
-                <Text>confusion</Text>
-                <Progress
-                  type="circle"
-                  percent={(confusion / Object.keys(emotions).length * 100).toFixed(0)}
-                  format={(percent) => `${percent}%`}
-                />
-              </Col>
-              <Col span={8} className="user-emotions__col">
-                <Text>fear</Text>
-                <Progress
-                  type="circle"
-                  percent={(fear / Object.keys(emotions).length * 100).toFixed(0)}
-                  format={(percent) => `${percent}%`}
-                />
-              </Col>
-              <Col span={8} className="user-emotions__col">
-                <Text>lonely</Text>
-                <Progress
-                  type="circle"
-                  percent={(lonely / Object.keys(emotions).length * 100).toFixed(0)}
-                  format={(percent) => `${percent}%`}
-                />
-              </Col>
-              <Col span={8} className="user-emotions__col">
-                <Text>pain</Text>
-                <Progress
-                  type="circle"
-                  percent={(pain / Object.keys(emotions).length * 100).toFixed(0)}
-                  format={(percent) => `${percent}%`}
-                />
+              <Col span={24} className="user-emotions__col">
+                <div className="user-emotions__col__progress">
+                  <Text>confusion</Text>
+                  <Progress
+                    type="circle"
+                    size={5}
+                    percent={(confusion / Object.keys(emotions).length * 100).toFixed(0)}
+                    format={(percent) => `${percent}%`}
+                  />
+                </div>
+                <div className="user-emotions__col__progress">
+                  <Text>fear</Text>
+                  <Progress
+                    type="circle"
+                    size={5}
+                    percent={(fear / Object.keys(emotions).length * 100).toFixed(0)}
+                    format={(percent) => `${percent}%`}
+                  />
+                </div>
+                <div className="user-emotions__col__progress">
+                  <Text>lonely</Text>
+                  <Progress
+                    type="circle"
+                    size={5}
+                    percent={(lonely / Object.keys(emotions).length * 100).toFixed(0)}
+                    format={(percent) => `${percent}%`}
+                  />
+                </div>
+                <div className="user-emotions__col__progress">
+                  <Text>pain</Text>
+                  <Progress
+                    type="circle"
+                    percent={(pain / Object.keys(emotions).length * 100).toFixed(0)}
+                    format={(percent) => `${percent}%`}
+                  />
+                </div>
               </Col>
             </Row>
           </div>
-          <div>
+          <div className="user-emotions__span__box">
             <Row>
               <Col span={24}>
                 <Title level={4}>habits</Title>
@@ -299,74 +311,88 @@ const UserEmotions = () => {
           </div>
         </span>
         <span className="user-emotions__span">
-          <Row className="user-emotions__span__row">
-            <Col span={24}>
-              <Text>did i had a meltdown?</Text>
-              <Progress
-                percent={(meltdown / Object.keys(events).length * 100).toFixed(0)}
-                format={(percent) => `${percent}%`}
-                size="small"
-              />
-            </Col>
-            <Col  span={24}>
-              <Text>was I able to identify something that was bottering me?</Text>
-              <Progress
-                percent={(identify / Object.keys(events).length * 100).toFixed(0)}
-                format={(percent) => `${percent}%`}
-                size="small"
-              />
-            </Col>
-          </Row>
-          <Row>
-            <Col span={24} >
-              <Text>headache</Text>
-              <Progress
-                percent={(headache / Object.keys(health).length * 100).toFixed(0)}
-                format={(percent) => `${percent}%`}
-                size="small"
-              />
-            </Col>
-            <Col span={24} >
-              <Text>burnout</Text>
-              <Progress
-                percent={(burnout / Object.keys(health).length * 100).toFixed(0)}
-                format={(percent) => `${percent}%`}
-                size="small"
-              />
-            </Col>
-            <Col span={24} >
-              <Text>repetitive thoughts</Text>
-              <Progress
-                percent={(repetitiveThoughts / Object.keys(health).length * 100).toFixed(0)}
-                format={(percent) => `${percent}%`}
-                size="small"
-              />
-            </Col>
-            <Col span={24} >
-              <Text>cramps</Text>
-              <Progress
-                percent={(cramps / Object.keys(health).length * 100).toFixed(0)}
-                format={(percent) => `${percent}%`}
-                size="small"
-              />
-            </Col>
-            <Col span={24} >
-              <Text>feeling sick</Text>
-              <Progress
-                percent={(feelingSick / Object.keys(health).length * 100).toFixed(0)}
-                format={(percent) => `${percent}%`}
-                size="small"
-              />
-            </Col>
-            <Col span={24} >
-              <Text>back pain</Text>
-              <Progress
-                percent={(backPain / Object.keys(health).length * 100).toFixed(0)}
-                format={(percent) => `${percent}%`}
-                size="small"
-              />
-            </Col>
-          </Row>
+          <div className="user-emotions__span__box">
+            <Row>
+              <Col span={24}>
+                <Title level={4}>events</Title>
+              </Col>
+            </Row>
+            <Row className="user-emotions__span__row">
+              <Col span={24}>
+                <Text>did i had a meltdown?</Text>
+                <Progress
+                  percent={(meltdown / Object.keys(events).length * 100).toFixed(0)}
+                  format={(percent) => `${percent}%`}
+                  size={[300, 20]}
+                />
+              </Col>
+              <Col span={24}>
+                <Text>was I able to identify something that was bottering me?</Text>
+                <Progress
+                  percent={(identify / Object.keys(events).length * 100).toFixed(0)}
+                  format={(percent) => `${percent}%`}
+                  size={[300, 20]}
+                />
+              </Col>
+            </Row>
+          </div>
+          <div className="user-emotions__span__box">
+            <Row>
+              <Col span={24}>
+                <Title level={4}>health</Title>
+              </Col>
+            </Row>
+            <Row>
+              <Col span={24} >
+                <Text>headache</Text>
+                <Progress
+                  percent={(headache / Object.keys(health).length * 100).toFixed(0)}
+                  format={(percent) => `${percent}%`}
+                  size="small"
+                />
+              </Col>
+              <Col span={24} >
+                <Text>burnout</Text>
+                <Progress
+                  percent={(burnout / Object.keys(health).length * 100).toFixed(0)}
+                  format={(percent) => `${percent}%`}
+                  size="small"
+                />
+              </Col>
+              <Col span={24} >
+                <Text>repetitive thoughts</Text>
+                <Progress
+                  percent={(repetitiveThoughts / Object.keys(health).length * 100).toFixed(0)}
+                  format={(percent) => `${percent}%`}
+                  size="small"
+                />
+              </Col>
+              <Col span={24} >
+                <Text>cramps</Text>
+                <Progress
+                  percent={(cramps / Object.keys(health).length * 100).toFixed(0)}
+                  format={(percent) => `${percent}%`}
+                  size="small"
+                />
+              </Col>
+              <Col span={24} >
+                <Text>feeling sick</Text>
+                <Progress
+                  percent={(feelingSick / Object.keys(health).length * 100).toFixed(0)}
+                  format={(percent) => `${percent}%`}
+                  size="small"
+                />
+              </Col>
+              <Col span={24} >
+                <Text>back pain</Text>
+                <Progress
+                  percent={(backPain / Object.keys(health).length * 100).toFixed(0)}
+                  format={(percent) => `${percent}%`}
+                  size="small"
+                />
+              </Col>
+            </Row>
+          </div>
         </span>
 
       </div>
