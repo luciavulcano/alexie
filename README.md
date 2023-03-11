@@ -17,9 +17,13 @@ in this project, we use:
 
 | ![axios](https://img.shields.io/badge/axios-5a29e4?style=for-the-badge&logo=axios&logoColor=white) | [axios](https://axios-http.com/) | v1.2.3 |
 
-| ![antd](https://img.shields.io/badge/antd-5a29e4?style=for-the-badge&logo=axios&logoColor=white)| [antd](https://ant.design/)       |   v5.1.6    |
+| ![antd](https://img.shields.io/badge/antd-5a29e4?style=for-the-badge&logo=antd&logoColor=white)| [antd](https://ant.design/)       |   v5.1.6    |
 
-| ![sass]| [sass]()       | v1.57.1      |
+| ![sass](https://img.shields.io/badge/sass-5a29e4?style=for-the-badge&logo=sass&logoColor=white)| [sass](https://sass-lang.com/)       | v1.57.1      |
 
-   |
+
+to run locally, you have to:
+  clone the repository
+  install the libs (npm install)
+  run the app (npm run dev)
 
