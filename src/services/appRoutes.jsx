@@ -23,7 +23,7 @@ function RequireAuthLogin({ children }) {
     return children;
   }
   if (user.state.refreshToken !== "") {
-    return <Navigate to="/home" replace />;
+    return <Navigate to="/" replace />;
   } else {
     return children;
   }
