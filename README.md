@@ -25,5 +25,5 @@ in this project, we use:
 to run locally, you have to:
   clone the repository
   install the libs (npm install)
-  run the app (npm run dev)
+  run the app (npm run dev) 
 
