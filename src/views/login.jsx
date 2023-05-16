@@ -1,13 +1,13 @@
 import { React, useState } from "react";
 import { Col, Row, Input, Typography, Form, Button } from "antd";
-import {
-  GoogleOutlined
-} from '@ant-design/icons';
 import useLoginStore from "../store/loginStore";
+import useGoogleStore from "../store/googleStore";
 import generateBackendURL from "../services/generateBackendURL";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../services/backendRoutes";
 import http from "../services/http";
+import { GoogleLogin } from '@react-oauth/google';
+import jwt_decode from "jwt-decode";
 
 const Login = () => {
   const ADDRESS = generateBackendURL("");
@@ -24,6 +24,18 @@ const Login = () => {
     setUsername: state.setUsername,
     setAccessToken: state.setAccessToken,
     setRefreshToken: state.setRefreshToken,
+  }));
+
+  const {
+    usernameGoogle,
+    setUsernameGoogle,
+    userPhoto,
+    setUserPhoto
+  } = useGoogleStore((state) => ({
+    usernameGoogle: state.usernameGoogle,
+    setUsernameGoogle: state.setUsernameGoogle,
+    userPhoto: state.userPhoto,
+    setUserPhoto: state.setUserPhoto
   }));
 
   function handleUsernameChange(event) {
@@ -60,6 +72,7 @@ const Login = () => {
     }
   };
 
+
   return (
     <div className="login">
       <Row className="login__header">
@@ -92,11 +105,23 @@ const Login = () => {
           </Button>
         </span>
         <Row className="login__box__sign">
-          <Col span={24}>
-            <Button type="primary" shape="round" size="large">
-              <GoogleOutlined />
-              sign in with google
-            </Button>
+          <Col span={24} id="signInDiv">
+            <GoogleLogin
+              rel="no-referrer-when-downgrade"
+              onSuccess={credentialResponse => {
+                console.log(credentialResponse)
+                let decoded = jwt_decode(credentialResponse.credential);
+                console.log(decoded)
+                // setUsername(decoded.name);
+                // setUserPhoto(decoded.picture);
+                // setAccessToken(credentialResponse);
+                // setRefreshToken(credentialResponse);
+                // navigate("/register-emotion");
+              }}
+              onError={() => {
+                console.log('Login Failed');
+              }}
+            />
           </Col>
         </Row>
       </Form>
@@ -105,3 +130,5 @@ const Login = () => {
 };
 
 export default Login;
+
+
