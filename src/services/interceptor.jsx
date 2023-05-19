@@ -8,6 +8,9 @@ const apiInterceptor = axios.create({
     "Content-Type": "application/json",
   },
   baseURL: `${ADDRESS}api/`,
+  referrerPolicy: {
+    policy: 'strict-origin-when-cross-origin'
+  }
 });
 
 apiInterceptor.interceptors.request.use((config) => {
